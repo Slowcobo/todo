@@ -28,6 +28,13 @@ export default function TodoApp() {
       )
     );
   };
+  const editTodo = (todoId, newTask) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === todoId ? { ...todo, task: newTask } : todo
+      )
+    );
+  };
   return (
     <Paper
       style={{
@@ -49,6 +56,7 @@ export default function TodoApp() {
             todos={todos}
             removeTodo={removeTodo}
             toggleTodo={toggleTodo}
+            editTodo={editTodo}
           />
         </Grid>
       </Grid>
