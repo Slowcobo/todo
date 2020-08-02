@@ -3,6 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 
 export default function TodoApp() {
@@ -12,6 +13,9 @@ export default function TodoApp() {
     { id: 3, task: "Grow beard", completed: true },
   ];
   const [todos, setTodos] = useState(initialTodos);
+  const addTodo = (newTask) => {
+    setTodos([...todos, { id: 4, task: newTask, completed: false }]);
+  };
   return (
     <Paper
       style={{
@@ -26,6 +30,7 @@ export default function TodoApp() {
           <Typography color="inherit">TODOS</Typography>
         </Toolbar>
       </AppBar>
+      <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} />
     </Paper>
   );
