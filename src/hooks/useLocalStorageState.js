@@ -14,7 +14,7 @@ export default (key, initialVal) => {
 
   // useEffect to update local storage
   useEffect(
-    (key) => {
+    () => {
       window.localStorage.setItem(key, JSON.stringify(state));
     },
     [state]
