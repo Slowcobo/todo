@@ -1,13 +1,13 @@
-import React, { createContext } from "react";
-import useTodoState from "../hooks/useTodoState";
+import React, { createContext, useReducer } from "react";
+import todosReducer from "../reducer/todos.reducer";
 
 export const TodosContext = createContext();
 
 export const TodosProvider = (props) => {
-  const todosData = useTodoState([]);
+  const [todos, dispatch] = useReducer(todosReducer, []);
 
   return (
-    <TodosContext.Provider value={todosData}>
+    <TodosContext.Provider value={{ todos, dispatch }}>
       {props.children}
     </TodosContext.Provider>
   );
