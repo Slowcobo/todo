@@ -1,26 +1,29 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 import { TodosProvider } from "./context/todos.context";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.default,
+    height: "100vh",
+    overflowY: "scroll",
+  },
+}));
+
 export default function TodoApp() {
+  const classes = useStyles();
+
   return (
-    <Paper
-      style={{
-        padding: 0,
-        margin: 0,
-        height: "100vh",
-        backgroundColor: "#fafafa",
-      }}
-    >
-      <AppBar color="primary" position="static" style={{ height: "64px" }}>
+    <div className={classes.root}>
+      <AppBar color="default" position="static">
         <Toolbar>
-          <Typography color="inherit">TODOS</Typography>
+          <Typography>Todos</Typography>
         </Toolbar>
       </AppBar>
       <Grid container justify="center" style={{ marginTop: "1rem" }}>
@@ -31,6 +34,6 @@ export default function TodoApp() {
           </TodosProvider>
         </Grid>
       </Grid>
-    </Paper>
+    </div>
   );
 }
