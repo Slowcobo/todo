@@ -1,9 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 const todosReducer = (todos, action) => {
   switch (action.type) {
     case "ADD":
-      return [...todos, { id: uuidv4(), task: action.task, completed: false }];
+      return [
+        ...todos,
+        {
+          id: uuidv4(),
+          task: action.task,
+          date: moment().format("YYYY-MM-DD"),
+          completed: false,
+        },
+      ];
     case "REMOVE":
       return todos.filter((todo) => todo.id !== action.id);
     case "TOGGLE":
