@@ -13,6 +13,7 @@ import EditTodoForm from "./EditTodoForm";
 function Todo({ id, task, completed }) {
   const dispatch = useContext(DispatchContext);
   const [isEditing, toggleForm] = useToggleState(false);
+
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
