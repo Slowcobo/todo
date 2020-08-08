@@ -15,7 +15,7 @@ import TodoDatePicker from "./TodoDatePicker";
 
 const useStyles = makeStyles((theme) => ({
   addTask: {
-    fontSize: "1.3rem",
+    fontSize: "1.2rem",
     textTransform: "none",
     "&:hover": {
       backgroundColor: "transparent",
@@ -58,7 +58,7 @@ export default function TodoForm() {
         className={classes.addTask}
         disableRipple
         disableFocusRipple
-        startIcon={<AddIcon style={{ fontSize: "1.5rem" }} />}
+        startIcon={<AddIcon style={{ fontSize: "1.4rem" }} />}
         onClick={handleClickOpen}
       >
         Add a Task

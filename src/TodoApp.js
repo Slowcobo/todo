@@ -8,8 +8,9 @@ import TodoDashboard from "./TodoDashboard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.paper,
     display: "flex",
+    height: "100vh",
   },
   content: {
     flexGrow: 1,
