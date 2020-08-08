@@ -10,7 +10,7 @@ import { DispatchContext } from "./context/todos.context";
 import useToggleState from "./hooks/useToggleState";
 import EditTodoForm from "./EditTodoForm";
 
-function Todo({ id, task, date, completed }) {
+function Todo({ id, task, completed }) {
   const dispatch = useContext(DispatchContext);
   const [isEditing, toggleForm] = useToggleState(false);
 
@@ -28,7 +28,7 @@ function Todo({ id, task, date, completed }) {
           <ListItemText
             style={{ textDecoration: completed ? "line-through" : "none" }}
           >
-            {task} {date}
+            {task}
           </ListItemText>
           <ListItemSecondaryAction>
             <IconButton onClick={toggleForm}>

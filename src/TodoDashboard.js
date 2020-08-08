@@ -24,10 +24,9 @@ const useStyles = makeStyles((theme) => ({
 export default function TodoDashboard() {
   const classes = useStyles();
   const date = moment();
-  const todos = useContext(TodosContext);
-  // .filter(
-  //   (todo) => todo.date === date.format("YYYY-MM-DD")
-  // );
+  const todos = useContext(TodosContext).filter(
+    (todo) => todo.date === date.format("YYYY-MM-DD")
+  );
 
   return (
     <div className={classes.root}>
