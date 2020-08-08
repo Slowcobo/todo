@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { TodosProvider } from "./context/todos.context";
-import { TodoFormProvider } from "./context/todoForm.context";
+import { TodosProvider } from "./contexts/todos.context";
+import { TodoFormProvider } from "./contexts/todoForm.context";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./Navbar";
 import Drawer from "./Drawer";

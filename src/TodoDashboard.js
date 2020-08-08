@@ -6,8 +6,8 @@ import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import Grid from "@material-ui/core/Grid";
-import { TodosContext } from "./context/todos.context";
-import { TodoFormContext } from "./context/todoForm.context";
+import { TodosContext } from "./contexts/todos.context";
+import { TodoFormContext } from "./contexts/todoForm.context";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 

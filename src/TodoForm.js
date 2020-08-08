@@ -9,8 +9,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import useInputState from "./hooks/useInputState";
-import { DispatchContext } from "./context/todos.context";
-import { TodoFormContext } from "./context/todoForm.context";
+import { DispatchContext } from "./contexts/todos.context";
+import { TodoFormContext } from "./contexts/todoForm.context";
 import TodoDatePicker from "./TodoDatePicker";
 
 const useStyles = makeStyles((theme) => ({

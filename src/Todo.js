@@ -6,7 +6,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { DispatchContext } from "./context/todos.context";
+import { DispatchContext } from "./contexts/todos.context";
 import EditTodoForm from "./EditTodoForm";
 
 function Todo({ id, task, date, completed }) {
