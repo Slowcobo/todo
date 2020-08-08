@@ -38,7 +38,7 @@ export default function TodoForm() {
         task: task,
         date: moment(date).format("YYYY-MM-DD"),
       });
-      handleClose();
+      handleFormClose();
     }
   };
 

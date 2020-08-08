@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -36,9 +36,11 @@ const useStyles = makeStyles((theme) => ({
 export default function TodoDashboard() {
   const classes = useStyles();
   const date = moment();
-  const todos = useContext(TodosContext).filter(
-    (todo) => todo.date === date.format("YYYY-MM-DD")
-  );
+  const todos = useContext(TodosContext);
+
+  // .filter(
+  //   (todo) => todo.date === date.format("YYYY-MM-DD")
+  // );
   const { handleOpen } = useContext(TodoFormContext);
 
   return (
