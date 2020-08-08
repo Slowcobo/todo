@@ -9,7 +9,7 @@ const todosReducer = (todos, action) => {
         {
           id: uuidv4(),
           task: action.task,
-          date: moment().format("YYYY-MM-DD"),
+          date: action.date,
           completed: false,
         },
       ];
@@ -21,7 +21,9 @@ const todosReducer = (todos, action) => {
       );
     case "EDIT":
       return todos.map((todo) =>
-        todo.id === action.id ? { ...todo, task: action.task } : todo
+        todo.id === action.id
+          ? { ...todo, task: action.task, date: action.date }
+          : todo
       );
     default:
       return todos;
