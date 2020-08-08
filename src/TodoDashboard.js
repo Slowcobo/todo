@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
 import Grid from "@material-ui/core/Grid";
 import { TodosContext } from "./context/todos.context";
+import { TodoFormContext } from "./context/todoForm.context";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 
@@ -13,6 +16,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(7),
     "& h1": {
       fontSize: "2.1rem",
+    },
+  },
+  addTask: {
+    fontSize: "1.2rem",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "transparent",
     },
   },
   date: {
@@ -29,6 +39,7 @@ export default function TodoDashboard() {
   const todos = useContext(TodosContext).filter(
     (todo) => todo.date === date.format("YYYY-MM-DD")
   );
+  const { handleOpen } = useContext(TodoFormContext);
 
   return (
     <Grid container className={classes.root}>
@@ -39,8 +50,17 @@ export default function TodoDashboard() {
         </Typography>
         <Divider />
         <TodoList todos={todos} />
-        <TodoForm />
+        <Button
+          className={classes.addTask}
+          disableRipple
+          disableFocusRipple
+          startIcon={<AddIcon style={{ fontSize: "1.4rem" }} />}
+          onClick={handleOpen}
+        >
+          Add a Task
+        </Button>
       </Grid>
+      <TodoForm />
     </Grid>
   );
 }
