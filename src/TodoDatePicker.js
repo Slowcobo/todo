@@ -12,13 +12,16 @@ export default function TodoDatePicker({
   showPicker,
   setShowPicker,
 }) {
+  const handleChange = (value) => {
+    setDate(value);
+    setShowPicker(false);
+  };
   return (
     <Dialog open={showPicker} onClose={() => setShowPicker(false)}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
-          autoOk
           value={date}
-          onChange={setDate}
+          onChange={handleChange}
           animateYearScrolling
           variant="static"
         />
