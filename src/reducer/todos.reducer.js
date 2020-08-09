@@ -9,6 +9,7 @@ const todosReducer = (todos, action) => {
           id: uuidv4(),
           task: action.task,
           date: action.date,
+          tags: action.tags,
           completed: false,
         },
       ];
@@ -21,7 +22,7 @@ const todosReducer = (todos, action) => {
     case "EDIT":
       return todos.map((todo) =>
         todo.id === action.id
-          ? { ...todo, task: action.task, date: action.date }
+          ? { ...todo, task: action.task, date: action.date, tags: action.tags }
           : todo
       );
     default:
