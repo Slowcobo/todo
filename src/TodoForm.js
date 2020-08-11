@@ -35,8 +35,13 @@ export default function TodoForm() {
 
   // Handle closing the todo form
   const handleFormClose = () => {
+    // CLose dialogs
     handleClose();
     setShowDatePicker(false);
+
+    // Reset state
+    setDate(moment());
+    setTags([]);
     reset();
   };
 
