@@ -9,6 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
+import Chip from "@material-ui/core/Chip";
 import useInputState from "./hooks/useInputState";
 import { DispatchContext } from "./contexts/todos.context";
 import { TodoFormContext } from "./contexts/todoForm.context";
@@ -75,6 +76,13 @@ export default function TodoForm() {
           />
         </form>
 
+        {/* Tag List */}
+        <div>
+          {tags.map((tag) => (
+            <Chip key={tag.id} label={tag.label} />
+          ))}
+        </div>
+
         {/* Date Picker Icon */}
         <IconButton onClick={() => setShowDatePicker(true)}>
           <EventOutlinedIcon />
@@ -93,6 +101,8 @@ export default function TodoForm() {
         </IconButton>
         {/* Tag Picker */}
         <TodoTagPicker
+          tags={tags}
+          setTags={setTags}
           showTagPicker={showTagPicker}
           setShowTagPicker={setShowTagPicker}
         />
