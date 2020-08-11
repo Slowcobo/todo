@@ -14,25 +14,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TodoTagPicker({
-  tags,
-  setTags,
   showTagPicker,
   setShowTagPicker,
+  handleTagClick,
 }) {
   const { tagList, setTagList } = useContext(TagsContext);
   const classes = useStyles();
-
-  const handleClick = (clickedTag) => {
-    // See if tag was already added
-    const tagIndex = tags.findIndex((tag) => tag.id === clickedTag.id);
-    // If not, add it to the tag list
-    if (tagIndex === -1) setTags([...tags, clickedTag]);
-    // Otherwise remove it
-    else {
-      const newTags = tags.filter((tag) => tag.id !== clickedTag.id);
-      setTags(newTags);
-    }
-  };
 
   return (
     <Dialog open={showTagPicker} onClose={() => setShowTagPicker(false)}>
@@ -41,9 +28,10 @@ export default function TodoTagPicker({
           <Chip
             key={tag.id}
             label={tag.label}
-            onClick={() => handleClick(tag)}
+            onClick={() => handleTagClick(tag)}
           />
         ))}
+        {/* TODO: Add custom tagging */}
       </div>
     </Dialog>
   );

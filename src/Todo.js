@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 function Todo({ id, task, date, tags, completed }) {
   const dispatch = useContext(DispatchContext);
   const [open, setOpen] = useState(false); // const { open, handleClose } = useContext(TodoFormContext);
+  const [currTags, setCurrTags] = useState(tags);
   const classes = useStyles();
 
   return (
@@ -65,6 +66,8 @@ function Todo({ id, task, date, tags, completed }) {
         id={id}
         task={task}
         date={date}
+        tags={currTags}
+        setTags={setCurrTags}
         open={open}
         setOpen={setOpen}
       />

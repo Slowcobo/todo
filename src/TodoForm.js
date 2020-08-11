@@ -33,12 +33,14 @@ export default function TodoForm() {
 
   const classes = useStyles();
 
+  // Handle closing the todo form
   const handleFormClose = () => {
     handleClose();
     setShowDatePicker(false);
     reset();
   };
 
+  // Add a new todo
   const handleSubmit = () => {
     if (task.length) {
       dispatch({
@@ -48,6 +50,28 @@ export default function TodoForm() {
         tags: tags,
       });
       handleFormClose();
+    }
+  };
+
+  // Add tag to the todo
+  const addTag = (tag) => {
+    setTags([...tags, tag]);
+  };
+
+  // Remove tag from the todo
+  const removeTag = (tagId) => {
+    const newTags = tags.filter((tag) => tag.id !== tagId);
+    setTags(newTags);
+  };
+
+  const handleTagClick = (clickedTag) => {
+    // See if tag was already added
+    const tagIndex = tags.findIndex((tag) => tag.id === clickedTag.id);
+    // If not, add it to the tag list
+    if (tagIndex === -1) addTag(clickedTag);
+    // Otherwise remove it
+    else {
+      removeTag(clickedTag.id);
     }
   };
 
@@ -79,7 +103,11 @@ export default function TodoForm() {
         {/* Tag List */}
         <div>
           {tags.map((tag) => (
-            <Chip key={tag.id} label={tag.label} />
+            <Chip
+              key={tag.id}
+              label={tag.label}
+              onDelete={() => removeTag(tag.id)}
+            />
           ))}
         </div>
 
@@ -101,10 +129,9 @@ export default function TodoForm() {
         </IconButton>
         {/* Tag Picker */}
         <TodoTagPicker
-          tags={tags}
-          setTags={setTags}
           showTagPicker={showTagPicker}
           setShowTagPicker={setShowTagPicker}
+          handleTagClick={handleTagClick}
         />
       </DialogContent>
       <DialogActions>

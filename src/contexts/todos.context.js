@@ -12,6 +12,7 @@ export const TodosProvider = (props) => {
     seedTodos,
     todosReducer
   );
+
   return (
     <TodosContext.Provider value={todos}>
       <DispatchContext.Provider value={dispatch}>

@@ -11,6 +11,8 @@ export default function TodoDatePicker({
   setDate,
   showDatePicker,
   setShowDatePicker,
+  showTagPicker,
+  setShowTagPicker,
 }) {
   const handleChange = (value) => {
     setDate(value);
