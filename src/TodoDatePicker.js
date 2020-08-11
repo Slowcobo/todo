@@ -9,15 +9,15 @@ import Dialog from "@material-ui/core/Dialog";
 export default function TodoDatePicker({
   date,
   setDate,
-  showPicker,
-  setShowPicker,
+  showDatePicker,
+  setShowDatePicker,
 }) {
   const handleChange = (value) => {
     setDate(value);
-    setShowPicker(false);
+    setShowDatePicker(false);
   };
   return (
-    <Dialog open={showPicker} onClose={() => setShowPicker(false)}>
+    <Dialog open={showDatePicker} onClose={() => setShowDatePicker(false)}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
           value={date}

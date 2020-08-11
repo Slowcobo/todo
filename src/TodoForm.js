@@ -12,8 +12,8 @@ import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
 import useInputState from "./hooks/useInputState";
 import { DispatchContext } from "./contexts/todos.context";
 import { TodoFormContext } from "./contexts/todoForm.context";
-import { TagsContext } from "./contexts/tags.context";
 import TodoDatePicker from "./TodoDatePicker";
+import TodoTagPicker from "./TodoTagPicker";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -23,15 +23,18 @@ export default function TodoForm() {
   const dispatch = useContext(DispatchContext);
   const { open, handleClose } = useContext(TodoFormContext);
   const [task, handleChange, reset] = useInputState("");
+
   const [date, setDate] = useState(moment());
-  const [showPicker, setShowPicker] = useState(false);
-  const { tags, setTags } = useContext(TagsContext);
-  const [openSelect, setOpenSelect] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const [tags, setTags] = useState([]);
+  const [showTagPicker, setShowTagPicker] = useState(false);
+
   const classes = useStyles();
 
   const handleFormClose = () => {
     handleClose();
-    setShowPicker(false);
+    setShowDatePicker(false);
     reset();
   };
 
@@ -45,14 +48,6 @@ export default function TodoForm() {
       });
       handleFormClose();
     }
-  };
-
-  const handleSelectOpen = () => {
-    setOpenSelect(true);
-  };
-
-  const handleSelectClose = () => {
-    setOpenSelect(false);
   };
 
   return (
@@ -81,25 +76,26 @@ export default function TodoForm() {
         </form>
 
         {/* Date Picker Icon */}
-        <IconButton onClick={() => setShowPicker(true)}>
+        <IconButton onClick={() => setShowDatePicker(true)}>
           <EventOutlinedIcon />
         </IconButton>
         {/* Date Picker */}
         <TodoDatePicker
           date={date}
           setDate={setDate}
-          showPicker={showPicker}
-          setShowPicker={setShowPicker}
+          showDatePicker={showDatePicker}
+          setShowDatePicker={setShowDatePicker}
         />
+
         {/* Tag Icon */}
-        <IconButton onClick={handleSelectOpen}>
+        <IconButton onClick={() => setShowTagPicker(true)}>
           <LabelOutlinedIcon />
         </IconButton>
-
         {/* Tag Picker */}
-        {/* tags.map((tag) => (
-            <MenuItem>{tag.label}</MenuItem>
-          ))} */}
+        <TodoTagPicker
+          showTagPicker={showTagPicker}
+          setShowTagPicker={setShowTagPicker}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleFormClose}>Cancel</Button>

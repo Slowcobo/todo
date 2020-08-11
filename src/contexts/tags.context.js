@@ -4,10 +4,10 @@ import defaultTags from "../defaultTags";
 export const TagsContext = createContext();
 
 export function TagsProvider(props) {
-  const [tags, setTags] = useState(defaultTags);
+  const [tagList, setTagList] = useState(defaultTags);
 
   return (
-    <TagsContext.Provider value={{ tags, setTags }}>
+    <TagsContext.Provider value={{ tagList, setTagList }}>
       {props.children}
     </TagsContext.Provider>
   );
