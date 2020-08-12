@@ -14,7 +14,7 @@ import { DispatchContext } from "./contexts/todos.context";
 import { TodoFormContext } from "./contexts/todoForm.context";
 import TodoDatePicker from "./TodoDatePicker";
 import TodoTagPicker from "./TodoTagPicker";
-import TagList from "./TagList";
+import TodoTagList from "./TodoTagList";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -58,28 +58,6 @@ export default function TodoForm() {
     }
   };
 
-  // // Add tag to the todo
-  // const addTag = (tag) => {
-  //   setTags([...tags, tag]);
-  // };
-
-  // // Remove tag from the todo
-  // const removeTag = (tagId) => {
-  //   const newTags = tags.filter((tag) => tag.id !== tagId);
-  //   setTags(newTags);
-  // };
-
-  // const handleTagClick = (clickedTag) => {
-  //   // See if tag was already added
-  //   const tagIndex = tags.findIndex((tag) => tag.id === clickedTag.id);
-  //   // If not, add it to the tag list
-  //   if (tagIndex === -1) addTag(clickedTag);
-  //   // Otherwise remove it
-  //   else {
-  //     removeTag(clickedTag.id);
-  //   }
-  // };
-
   return (
     <Dialog
       className={classes.root}
@@ -106,16 +84,7 @@ export default function TodoForm() {
         </form>
 
         {/* Tag List */}
-        <TagList tags={tags} />
-        {/* <div>
-          {tags.map((tag) => (
-            <Chip
-              key={tag.id}
-              label={tag.label}
-              onDelete={() => removeTag(tag.id)}
-            />
-          ))}
-        </div> */}
+        <TodoTagList tags={tags} setTags={setTags} />
 
         {/* Date Picker Icon */}
         <IconButton onClick={() => setShowDatePicker(true)}>

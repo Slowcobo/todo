@@ -29,7 +29,7 @@ export default function TodoTagPicker({
 
   const availableTags = defaultTags.filter((tag) => {
     const tagIndex = tags.findIndex((todoTag) => todoTag.id === tag.id);
-    if (tagIndex === -1) return tag;
+    return tagIndex === -1;
   });
 
   return (

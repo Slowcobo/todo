@@ -6,7 +6,6 @@ import InputBase from "@material-ui/core/InputBase";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import Chip from "@material-ui/core/Chip";
 import IconButton from "@material-ui/core/IconButton";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
@@ -14,6 +13,7 @@ import useInputState from "./hooks/useInputState";
 import { DispatchContext } from "./contexts/todos.context";
 import TodoDatePicker from "./TodoDatePicker";
 import TodoTagPicker from "./TodoTagPicker";
+import TodoTagList from "./TodoTagList";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -51,28 +51,6 @@ export default function EditTodoForm({
     setOpen(false);
   };
 
-  // Add tag to the todo
-  const addTag = (tag) => {
-    setTags([...tags, tag]);
-  };
-
-  // Remove tag from the todo
-  const removeTag = (tagId) => {
-    const newTags = tags.filter((tag) => tag.id !== tagId);
-    setTags(newTags);
-  };
-
-  const handleTagClick = (clickedTag) => {
-    // See if tag was already added
-    const tagIndex = tags.findIndex((tag) => tag.id === clickedTag.id);
-    // If not, add it to the tag list
-    if (tagIndex === -1) addTag(clickedTag);
-    // Otherwise remove it
-    else {
-      removeTag(clickedTag.id);
-    }
-  };
-
   return (
     <Dialog
       className={classes.root}
@@ -98,15 +76,7 @@ export default function EditTodoForm({
         </form>
 
         {/* Tag List */}
-        <div>
-          {tags.map((tag) => (
-            <Chip
-              key={tag.id}
-              label={tag.label}
-              // onDelete={() => removeTag(tag.id)}
-            />
-          ))}
-        </div>
+        <TodoTagList tags={tags} setTags={setTags} />
 
         {/* Date Picker Icon */}
         <IconButton onClick={() => setShowDatePicker(true)}>
@@ -128,7 +98,8 @@ export default function EditTodoForm({
         <TodoTagPicker
           showTagPicker={showTagPicker}
           setShowTagPicker={setShowTagPicker}
-          handleTagClick={handleTagClick}
+          tags={tags}
+          setTags={setTags}
         />
       </DialogContent>
 
