@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TodosProvider } from "./contexts/todos.context";
 import { TodoFormProvider } from "./contexts/todoForm.context";
-import { TagsProvider } from "./contexts/tags.context";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./Navbar";
 import Drawer from "./Drawer";
@@ -26,22 +25,20 @@ export default function TodoApp() {
   return (
     <TodosProvider>
       <TodoFormProvider>
-        <TagsProvider>
-          <div className={classes.root}>
-            <CssBaseline />
+        <div className={classes.root}>
+          <CssBaseline />
 
-            {/* Nav Bar */}
-            <Navbar />
+          {/* Nav Bar */}
+          <Navbar />
 
-            {/* Nav Drawer */}
-            <Drawer />
+          {/* Nav Drawer */}
+          <Drawer />
 
-            {/* Main Content */}
-            <main className={classes.content}>
-              <TodoDashboard />
-            </main>
-          </div>
-        </TagsProvider>
+          {/* Main Content */}
+          <main className={classes.content}>
+            <TodoDashboard />
+          </main>
+        </div>
       </TodoFormProvider>
     </TodosProvider>
   );

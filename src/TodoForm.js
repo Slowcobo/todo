@@ -9,12 +9,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
-import Chip from "@material-ui/core/Chip";
 import useInputState from "./hooks/useInputState";
 import { DispatchContext } from "./contexts/todos.context";
 import { TodoFormContext } from "./contexts/todoForm.context";
 import TodoDatePicker from "./TodoDatePicker";
 import TodoTagPicker from "./TodoTagPicker";
+import TagList from "./TagList";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -58,27 +58,27 @@ export default function TodoForm() {
     }
   };
 
-  // Add tag to the todo
-  const addTag = (tag) => {
-    setTags([...tags, tag]);
-  };
+  // // Add tag to the todo
+  // const addTag = (tag) => {
+  //   setTags([...tags, tag]);
+  // };
 
-  // Remove tag from the todo
-  const removeTag = (tagId) => {
-    const newTags = tags.filter((tag) => tag.id !== tagId);
-    setTags(newTags);
-  };
+  // // Remove tag from the todo
+  // const removeTag = (tagId) => {
+  //   const newTags = tags.filter((tag) => tag.id !== tagId);
+  //   setTags(newTags);
+  // };
 
-  const handleTagClick = (clickedTag) => {
-    // See if tag was already added
-    const tagIndex = tags.findIndex((tag) => tag.id === clickedTag.id);
-    // If not, add it to the tag list
-    if (tagIndex === -1) addTag(clickedTag);
-    // Otherwise remove it
-    else {
-      removeTag(clickedTag.id);
-    }
-  };
+  // const handleTagClick = (clickedTag) => {
+  //   // See if tag was already added
+  //   const tagIndex = tags.findIndex((tag) => tag.id === clickedTag.id);
+  //   // If not, add it to the tag list
+  //   if (tagIndex === -1) addTag(clickedTag);
+  //   // Otherwise remove it
+  //   else {
+  //     removeTag(clickedTag.id);
+  //   }
+  // };
 
   return (
     <Dialog
@@ -106,7 +106,8 @@ export default function TodoForm() {
         </form>
 
         {/* Tag List */}
-        <div>
+        <TagList tags={tags} />
+        {/* <div>
           {tags.map((tag) => (
             <Chip
               key={tag.id}
@@ -114,7 +115,7 @@ export default function TodoForm() {
               onDelete={() => removeTag(tag.id)}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* Date Picker Icon */}
         <IconButton onClick={() => setShowDatePicker(true)}>
@@ -136,7 +137,8 @@ export default function TodoForm() {
         <TodoTagPicker
           showTagPicker={showTagPicker}
           setShowTagPicker={setShowTagPicker}
-          handleTagClick={handleTagClick}
+          tags={tags}
+          setTags={setTags}
         />
       </DialogContent>
       <DialogActions>

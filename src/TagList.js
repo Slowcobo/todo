@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Chip from "@material-ui/core/Chip";
+import defaultTags from "./defaultTags";
 
 export default function TagList({ tags, setTags }) {
   // Add tag to the todo
