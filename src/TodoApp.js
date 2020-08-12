@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import Drawer from "./Drawer";
 import TodoDashboard from "./TodoDashboard";
+import TodosToday from "./TodosToday";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,13 +37,14 @@ export default function TodoApp() {
           <Drawer />
 
           {/* Main Content */}
-
           <main className={classes.content}>
             <Switch>
               <Route exact path="/">
                 <TodoDashboard />
               </Route>
-              <Route exact path="/today"></Route>
+              <Route exact path="/today">
+                <TodosToday />
+              </Route>
               <Route exact path="/week"></Route>
               <Route exact path="/todos"></Route>
             </Switch>

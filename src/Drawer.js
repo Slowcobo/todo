@@ -9,6 +9,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 300;
 
@@ -24,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerContainer: {
     overflow: "auto",
+  },
+  link: {
+    textDecoration: "none",
+    color: "inherit",
   },
 }));
 
@@ -41,14 +46,14 @@ export default function TodoDrawer() {
       <Toolbar />
       <div className={classes.drawerContainer}>
         <List>
-          {["Placeholder 1", "Placeholder 2"].map((text, index) => (
-            <ListItem button key={text}>
+          <Link className={classes.link} to="/today">
+            <ListItem button key="Today">
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary="Today" />
             </ListItem>
-          ))}
+          </Link>
         </List>
         <Divider />
       </div>
