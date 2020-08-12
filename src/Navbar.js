@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 import { TodoFormContext } from "./contexts/todoForm.context";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    "& a": {
+      textDecoration: "none",
+      color: "inherit",
+    },
   },
 }));
 
@@ -24,7 +29,7 @@ export default function Navbar() {
     <AppBar color="default" position="fixed" className={classes.appBar}>
       <Toolbar>
         <Typography className={classes.title} variant="h6" noWrap>
-          Todos
+          <Link to="/">Todos</Link>
         </Typography>
         <IconButton onClick={handleOpen}>
           <AddIcon />

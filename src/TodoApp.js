@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TodosProvider } from "./contexts/todos.context";
 import { TodoFormProvider } from "./contexts/todoForm.context";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import Drawer from "./Drawer";
 import TodoDashboard from "./TodoDashboard";
@@ -35,8 +36,16 @@ export default function TodoApp() {
           <Drawer />
 
           {/* Main Content */}
+
           <main className={classes.content}>
-            <TodoDashboard />
+            <Switch>
+              <Route exact path="/">
+                <TodoDashboard />
+              </Route>
+              <Route exact path="/today"></Route>
+              <Route exact path="/week"></Route>
+              <Route exact path="/todos"></Route>
+            </Switch>
           </main>
         </div>
       </TodoFormProvider>
