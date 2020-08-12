@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import Drawer from "./Drawer";
 import TodoDashboard from "./TodoDashboard";
 import TodosToday from "./TodosToday";
+import TodosWeek from "./TodosWeek";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +46,9 @@ export default function TodoApp() {
               <Route exact path="/today">
                 <TodosToday />
               </Route>
-              <Route exact path="/week"></Route>
+              <Route exact path="/week">
+                <TodosWeek />
+              </Route>
               <Route exact path="/todos"></Route>
             </Switch>
           </main>

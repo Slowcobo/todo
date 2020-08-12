@@ -47,11 +47,19 @@ export default function TodoDrawer() {
       <div className={classes.drawerContainer}>
         <List>
           <Link className={classes.link} to="/today">
-            <ListItem button key="Today">
+            <ListItem button key="today">
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
               <ListItemText primary="Today" />
+            </ListItem>
+          </Link>
+          <Link className={classes.link} to="/week">
+            <ListItem button key="week">
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="This Week" />
             </ListItem>
           </Link>
         </List>
