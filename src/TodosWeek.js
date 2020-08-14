@@ -4,8 +4,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
+import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
 import { TodosContext } from "./contexts/todos.context";
 import TodoList from "./TodoList";
+import TodoForm from "./TodoForm";
 import weekdays from "./weekdays";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,16 +42,22 @@ export default function TodosWeek() {
       <Grid item xs={12}>
         {dates.map((date) => (
           <div key={date}>
-            <Typography variant="h1">{date.calendar(moment())}</Typography>
-            <Divider />
-            <TodoList
-              todos={todos.filter(
-                (todo) => todo.date === date.format("YYYY-MM-DD")
-              )}
-            />
+            <Grid item xs={12}>
+              <Typography variant="h1">{date.calendar(moment())}</Typography>
+              <Divider style={{ marginTop: "0.5rem" }} />
+              <TodoList
+                todos={todos.filter(
+                  (todo) => todo.date === date.format("YYYY-MM-DD")
+                )}
+              />
+            </Grid>
+            <Grid item container justify="center" style={{ margin: "2rem 0" }}>
+              <ArrowDownwardOutlinedIcon />
+            </Grid>
           </div>
         ))}
       </Grid>
+      <TodoForm />
     </Grid>
   );
 }
