@@ -16,7 +16,7 @@ export default function TodoList({ todos }) {
     </List>
   ) : (
     <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <Typography>You're all done for today!</Typography>
+      <Typography>You don't have any tasks today!</Typography>
       <Divider style={{ marginTop: "1rem" }} />
     </div>
   );

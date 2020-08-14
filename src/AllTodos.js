@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
+import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -17,8 +18,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AllTodos() {
-  const classes = useStyles();
+  const [sort, setSort] = useState("dateAsc");
   const todos = useContext(TodosContext);
+  const classes = useStyles();
+
+  const sortTodos = (action) => {
+    switch (action) {
+      case "dateDesc": {
+        return todos.sort((a, b) => moment(b.date).diff(a.date));
+      }
+      case "dateAsc": {
+        return todos.sort((a, b) => moment(a.date).diff(b.date));
+      }
+      default: {
+        return todos;
+      }
+    }
+  };
 
   return (
     <Grid container className={classes.root}>
@@ -27,7 +43,9 @@ export default function AllTodos() {
           Your Todos
         </Typography>
         <Divider />
-        <TodoList todos={todos} />
+        <button onClick={() => setSort("dateAsc")}>Date Ascending</button>
+        <button onClick={() => setSort("dateDesc")}>Date Descending</button>
+        <TodoList todos={sortTodos(sort)} />
       </Grid>
       <TodoForm />
     </Grid>
