@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AllTodos() {
-  const [sort, setSort] = useState("dateAsc");
+  const [sortType, setSortType] = useState("dateAsc");
+  const [filters, setFilters] = useState({
+    completed: undefined,
+    tags: [],
+  });
   const todos = useContext(TodosContext);
   const classes = useStyles();
 
@@ -36,6 +40,15 @@ export default function AllTodos() {
     }
   };
 
+  const allTodos = sortTodos(sortType).filter(
+    (todo) =>
+      (filters.completed === undefined ||
+        todo.completed === filters.completed) &&
+      filters.tags.every((filterTag) =>
+        todo.tags.some((tag) => tag.id === filterTag.id)
+      )
+  );
+
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
@@ -43,9 +56,27 @@ export default function AllTodos() {
           Your Todos
         </Typography>
         <Divider />
-        <button onClick={() => setSort("dateAsc")}>Date Ascending</button>
-        <button onClick={() => setSort("dateDesc")}>Date Descending</button>
-        <TodoList todos={sortTodos(sort)} />
+        <button onClick={() => setSortType("dateAsc")}>Date Ascending</button>
+        <button onClick={() => setSortType("dateDesc")}>Date Descending</button>
+        <button onClick={() => setFilters({ ...filters, completed: true })}>
+          Completed
+        </button>
+        <button
+          onClick={() =>
+            setFilters({
+              ...filters,
+              tags: [
+                { id: "a716bfb4-d9df-11ea-87d0-0242ac130003", label: "Home" },
+              ],
+            })
+          }
+        >
+          Home
+        </button>
+        <button onClick={() => setFilters({ completed: undefined, tags: [] })}>
+          Reset
+        </button>
+        <TodoList todos={allTodos} />
       </Grid>
       <TodoForm />
     </Grid>
