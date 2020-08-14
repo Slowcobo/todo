@@ -9,6 +9,7 @@ import Drawer from "./Drawer";
 import TodoDashboard from "./TodoDashboard";
 import TodosToday from "./TodosToday";
 import TodosWeek from "./TodosWeek";
+import AllTodos from "./AllTodos";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +52,9 @@ export default function TodoApp() {
               <Route exact path="/week">
                 <TodosWeek />
               </Route>
-              <Route exact path="/todos"></Route>
+              <Route exact path="/todos">
+                <AllTodos />
+              </Route>
             </Switch>
           </main>
         </div>

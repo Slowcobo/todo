@@ -16,13 +16,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "2.1rem",
     },
   },
-  addTask: {
-    fontSize: "1.2rem",
-    textTransform: "none",
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-  },
   date: {
     marginLeft: theme.spacing(1),
     fontSize: "1rem",
@@ -53,6 +46,8 @@ export default function TodosWeek() {
                 )}
               />
             </Grid>
+
+            {/* Only display down arrow if day isn't the last */}
             {i < dates.length - 1 && (
               <Grid
                 item

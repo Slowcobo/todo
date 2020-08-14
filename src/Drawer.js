@@ -62,6 +62,14 @@ export default function TodoDrawer() {
               <ListItemText primary="This Week" />
             </ListItem>
           </Link>
+          <Link className={classes.link} to="/todos">
+            <ListItem button key="todos">
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="All Todos" />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
       </div>
