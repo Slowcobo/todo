@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -40,20 +39,30 @@ export default function TodosWeek() {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        {dates.map((date) => (
+        {dates.map((date, i) => (
           <div key={date}>
             <Grid item xs={12}>
-              <Typography variant="h1">{date.calendar(moment())}</Typography>
-              <Divider style={{ marginTop: "0.5rem" }} />
+              <Typography variant="h1" gutterBottom>
+                {date.calendar().split(" ")[0]}
+                <span className={classes.date}>{date.format("MMMM Do")}</span>
+              </Typography>
+              <Divider />
               <TodoList
                 todos={todos.filter(
                   (todo) => todo.date === date.format("YYYY-MM-DD")
                 )}
               />
             </Grid>
-            <Grid item container justify="center" style={{ margin: "2rem 0" }}>
-              <ArrowDownwardOutlinedIcon />
-            </Grid>
+            {i < dates.length - 1 && (
+              <Grid
+                item
+                container
+                justify="center"
+                style={{ margin: "2rem 0" }}
+              >
+                <ArrowDownwardOutlinedIcon />
+              </Grid>
+            )}
           </div>
         ))}
       </Grid>
