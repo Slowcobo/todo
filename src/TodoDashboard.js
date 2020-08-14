@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import TodoMetrics from "./TodoMetrics";
 import TodosToday from "./TodosToday";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +20,8 @@ export default function TodoDashboard() {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        <Typography variant="h1">Metrics Placeholder</Typography>
+        
+        <TodoMetrics />
       </Grid>
       <Grid item xs={12}>
         <TodosToday />

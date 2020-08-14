@@ -39,7 +39,7 @@ function Todo({ id, task, date, tags, completed }) {
             width: "100%",
           }}
         >
-          {task} {date}
+          {task}
         </ListItemText>
 
         <div style={{ width: "100%" }}>
