@@ -32,34 +32,44 @@ export default function TodosWeek() {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        {dates.map((date, i) => (
-          <div key={date}>
-            <Grid item xs={12}>
-              <Typography variant="h1" gutterBottom>
-                {date.calendar().split(" ")[0]}
-                <span className={classes.date}>{date.format("MMMM Do")}</span>
-              </Typography>
-              <Divider />
-              <TodoList
-                todos={todos.filter(
-                  (todo) => todo.date === date.format("YYYY-MM-DD")
-                )}
-              />
-            </Grid>
+        {dates.map((date, i) => {
+          const dailyTodos = todos.filter(
+            (todo) => todo.date === date.format("YYYY-MM-DD")
+          );
 
-            {/* Only display down arrow if day isn't the last */}
-            {i < dates.length - 1 && (
-              <Grid
-                item
-                container
-                justify="center"
-                style={{ margin: "2rem 0" }}
-              >
-                <ArrowDownwardOutlinedIcon />
+          return (
+            <div key={date}>
+              <Grid item xs={12}>
+                <Typography variant="h1" gutterBottom>
+                  {date.calendar().split(" ")[0]}
+                  <span className={classes.date}>{date.format("MMMM Do")}</span>
+                </Typography>
+                <Divider />
+
+                {dailyTodos.length ? (
+                  <TodoList todos={dailyTodos} />
+                ) : (
+                  <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+                    <Typography>You don't have any tasks today.</Typography>
+                    <Divider style={{ marginTop: "1rem" }} />
+                  </div>
+                )}
               </Grid>
-            )}
-          </div>
-        ))}
+
+              {/* Only display down arrow if day isn't the last */}
+              {i < dates.length - 1 && (
+                <Grid
+                  item
+                  container
+                  justify="center"
+                  style={{ margin: "2rem 0" }}
+                >
+                  <ArrowDownwardOutlinedIcon />
+                </Grid>
+              )}
+            </div>
+          );
+        })}
       </Grid>
       <TodoForm />
     </Grid>

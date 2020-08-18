@@ -49,7 +49,20 @@ export default function TodosToday() {
           <span className={classes.date}>{date.format("dddd, MMMM Do")}</span>
         </Typography>
         <Divider />
-        <TodoList todos={todos} />
+        {todos.length ? (
+          <TodoList todos={todos} />
+        ) : (
+          <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+            <Typography>
+              You're all done for the day!{" "}
+              <span role="img" aria-labelledby="party-popper">
+                🎉
+              </span>
+            </Typography>
+            <Divider style={{ marginTop: "1rem" }} />
+          </div>
+        )}
+
         <Button
           className={classes.addTask}
           disableRipple

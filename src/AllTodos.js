@@ -76,7 +76,14 @@ export default function AllTodos() {
         <button onClick={() => setFilters({ completed: undefined, tags: [] })}>
           Reset
         </button>
-        <TodoList todos={allTodos} />
+        {allTodos.length ? (
+          <TodoList todos={allTodos} />
+        ) : (
+          <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+            <Typography>There are no tasks that match the criteria.</Typography>
+            <Divider style={{ marginTop: "1rem" }} />
+          </div>
+        )}
       </Grid>
       <TodoForm />
     </Grid>

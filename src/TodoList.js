@@ -1,11 +1,10 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import Typography from "@material-ui/core/Typography";
 import Todo from "./Todo";
 
 export default function TodoList({ todos }) {
-  return todos.length ? (
+  return (
     <List>
       {todos.map((todo) => (
         <React.Fragment key={todo.id}>
@@ -14,10 +13,5 @@ export default function TodoList({ todos }) {
         </React.Fragment>
       ))}
     </List>
-  ) : (
-    <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <Typography>You don't have any tasks today!</Typography>
-      <Divider style={{ marginTop: "1rem" }} />
-    </div>
   );
 }
